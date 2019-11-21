@@ -8,11 +8,21 @@ const geocodeUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Ange
 console.log(geocodeUrl)
 
 request({ url, json:true }, (error, response) => {
-    //console.log(response.body.currently)
-
+  if (error) {
+    console.log('Unable to connect to the weather service.')
+  } else if (response.body.error) {
+    console.log(response.body.error)
+  } else {
     console.log("It is currently " + response.body.currently.temperature + " degrees out. There is a " + response.body.currently.precipProbability + "% chance of rain.")
+  }
 })
 
 request({ url: geocodeUrl, json:true}, (error, response) => {
-  console.log("Los Angeles is at: " + response.body.features[0].center[1] + ", " + response.body.features[0].center[0])
+  if (error) {
+    console.log('Unable to connect to the geocoding service.')
+  } else if (response.body.message) {
+    console.log(response.body.message)
+  } else {
+    console.log("Los Angeles is at: " + response.body.features[0].center[1] + ", " + response.body.features[0].center[0])
+  }
 })
