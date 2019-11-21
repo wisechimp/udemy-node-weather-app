@@ -13,6 +13,7 @@
     "eslint-config-google": "^0.13.0"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "eslint-utils": "^1.4.3",
     "lodash": "^4.17.15",
     "request": "^2.88.0"
